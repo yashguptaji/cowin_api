@@ -9,35 +9,36 @@
   </head>
   <body>
     <div class="content">
-      <div class="title">Vaccine Availabilty Checker</div>
+      <div class="title">Vaccine Availabilty Checker !!!</div>
       <div class="form">
         <select id="states" name="states" class="states"></select>
-        <button id="button">Get districts</button>
+        <button id="button">Get districts RIGHT NOW!!!</button>
         <select id="districts" name="districts" class="districts"></select>
       </div>
       <div id="age" class="age">
-        <input type="radio" name="age" value="0" checked="checked" /><span
-          class="pl-1"
-          >Any</span
-        >
+        
         <input type="radio" name="age" value="18" /><span class="pl-1"
           >18-44</span
         >
         <input type="radio" name="age" value="45" /><span class="pl-1"
           >45+</span
         >
+        <input type="radio" name="age" value="0" checked="checked" /><span
+          class="pl-1"
+          >Any</span
+        >
       </div>
       <div class="submit"><button id="submit">Submit</button></div>
     </div>
     <script>
       var data;
-      var xhr = new XMLHttpRequest();
-      xhr.open(
+      var XHR = new XMLHttpRequest();
+      XHR.open(
         "GET",
         "https://cdn-api.co-vin.in/api/v2/admin/location/states",
         true
       );
-      xhr.onload = function () {
+      XHR.onload = function () {
         if (this.status >= 200 && this.status < 400) {
           data = JSON.parse(this.responseText);
           var states = data.states;
@@ -55,21 +56,21 @@
           document.getElementById("states").innerHTML = output;
         }
       };
-      xhr.send();
+      XHR.send();
 
       const state = document.querySelector(".states");
       document.getElementById("button").addEventListener("click", (e) => {
         // console.log(state.value);
 
         var data;
-        var xhr = new XMLHttpRequest();
-        xhr.open(
+        var XHR = new XMLHttpRequest();
+        XHR.open(
           "GET",
           "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" +
             state.value,
           true
         );
-        xhr.onload = function () {
+        XHR.onload = function () {
           if (this.status >= 200 && this.status < 400) {
             data = JSON.parse(this.responseText);
             var districts = data.districts;
@@ -87,7 +88,7 @@
             document.getElementById("districts").innerHTML = output;
           }
         };
-        xhr.send();
+        XHR.send();
         const district = document.querySelector(".districts");
         document
           .getElementById("submit")
